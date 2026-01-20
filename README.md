@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# News Portal Project
 
-## Getting Started
+This is a **Next.js 13+ project** built as part of a **live coding test**.  
 
-First, run the development server:
+The project focuses on creating a **dynamic news portal** with the following features:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Real-time news filtering** by:
+  - Country
+  - Category
+  - Search query
+  - Language
+  - Sources
+  - Date range (from/to)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Interactive UI**:
+  - Animated hero section
+  - Smooth card animations with hover effects
+  - Dark theme support
+  - Responsive layout for desktop and mobile
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Backend & API**:
+  - Next.js API routes for fetching and filtering news
+  - Cached news stored in MongoDB to avoid duplicate API calls
+  - Duplicate-proof mechanism for stored articles
+  - Smart use of **NewsAPI**:
+    - `top-headlines` endpoint for standard country/category filters
+    - `everything` endpoint for language-specific searches
+    - Automatic fallback keyword for language-only searches
 
-## Learn More
+- **Frontend Experience**:
+  - Animated news cards using Framer Motion
+  - Line-clamped text for uniform card height
+  - Real-time filtering without page reload
+  - Dynamic display of selected category or search query
 
-To learn more about Next.js, take a look at the following resources:
+## Purpose
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project was created to demonstrate **full-stack web development skills** in a live coding test environment, focusing on:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- React/Next.js frontend development
+- Backend API handling and caching
+- UI/UX design with animations
+- Best practices for API integration and database management
 
-## Deploy on Vercel
+## Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Frontend:** Next.js 13+, React, Tailwind CSS, Framer Motion  
+- **Backend:** Next.js API routes, Node.js  
+- **Database:** MongoDB  
+- **External APIs:** NewsAPI  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+**Note:** This project is designed to handle **real-world news filtering** with multiple parameters while maintaining performance and preventing duplicate entries in the database.
