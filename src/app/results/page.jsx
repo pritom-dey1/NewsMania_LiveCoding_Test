@@ -9,7 +9,6 @@ import NewsCard from '@/components/NewsCard';
 export default function Results() {
   const searchParams = useSearchParams();
 
-  // All filters from HeroSection
   const country = searchParams.get('country') || 'us';
   const category = searchParams.get('category') || 'general';
   const q = searchParams.get('q') || '';
@@ -80,7 +79,6 @@ useEffect(() => {
       className="min-h-screen bg-gradient-to-b from-[#05070f] to-[#0a0e1f] text-white px-4 py-12 md:py-16"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -95,7 +93,6 @@ useEffect(() => {
           </p>
         </motion.div>
 
-        {/* Loading */}
         {loading && (
           <div className="flex flex-col items-center justify-center min-h-[50vh]">
             <motion.div
@@ -114,7 +111,6 @@ useEffect(() => {
           </div>
         )}
 
-        {/* Error */}
         {!loading && error && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -134,7 +130,6 @@ useEffect(() => {
           </motion.div>
         )}
 
-        {/* No Results */}
         {!loading && !error && articles.length === 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}

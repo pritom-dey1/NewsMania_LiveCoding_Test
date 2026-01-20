@@ -1,4 +1,3 @@
-// src/components/HeroSection.js
 
 'use client';
 
@@ -77,7 +76,6 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-950 to-black text-white px-4 md:px-8">
-      {/* Animated background gradients */}
       <motion.div
         className="absolute inset-0 opacity-20"
         initial={{ opacity: 0 }}
@@ -88,7 +86,6 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,#8b5cf6_0%,transparent_50%)]" />
       </motion.div>
 
-      {/* Main content */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -115,7 +112,6 @@ export default function HeroSection() {
           Real-time global news at your fingertips. Filter by country, category, language, date range, sources, or search instantly.
         </motion.p>
 
-        {/* Glassmorphism Form */}
         <motion.form
           onSubmit={handleSearch}
           initial={{ y: 30, opacity: 0 }}
@@ -149,7 +145,6 @@ export default function HeroSection() {
             ))}
           </select>
 
-          {/* Language */}
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
@@ -162,7 +157,6 @@ export default function HeroSection() {
             ))}
           </select>
 
-          {/* Sources Input */}
           <input
             type="text"
             value={sources}
@@ -196,7 +190,6 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* Search Input */}
           <input
             type="text"
             value={searchQuery}
@@ -205,7 +198,6 @@ export default function HeroSection() {
             className="w-full md:flex-1 px-6 py-4 bg-black/40 border border-gray-700/50 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-300 hover:border-blue-500/50"
           />
 
-          {/* Submit Button */}
           <motion.button
             whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(59, 130, 246, 0.5)' }}
             whileTap={{ scale: 0.95 }}

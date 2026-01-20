@@ -1,5 +1,3 @@
-// src/app/api/news/route.js
-
 import { NextResponse } from 'next/server';
 import { getCollection } from '@/lib/db';
 
@@ -19,10 +17,8 @@ export async function GET(request) {
   try {
     const headlinesCollection = await getCollection('headlines');
 
-    // Ensure unique index on URL exists
     await headlinesCollection.createIndex({ url: 1 }, { unique: true });
 
-    // --- DB Query ---
     const dbQuery = {};
     if (country && country !== 'us') dbQuery['queryParams.country'] = country;
     if (category) dbQuery['queryParams.category'] = category;
@@ -43,7 +39,6 @@ export async function GET(request) {
       .sort({ publishedAt: -1 })
       .toArray();
 
-    // --- Fetch from NewsAPI if no cached results ---
     if (articles.length === 0) {
       console.log('No cached results - fetching from NewsAPI');
 
@@ -54,19 +49,16 @@ export async function GET(request) {
       let apiUrl = '';
       let useEverything = false;
 
-      // Use 'everything' endpoint if language filter is specified
       if (language) {
   useEverything = true;
   
-  // minimal required parameter added
-  let keyword = q || 'news'; // fallback keyword if q empty
+  let keyword = q || 'news';
 
   apiUrl = `https://newsapi.org/v2/everything?apiKey=${apiKey}&language=${language}&q=${encodeURIComponent(keyword)}`;
   
   if (from) apiUrl += `&from=${from}`;
   if (to) apiUrl += `&to=${to}`;
 }else {
-        // fallback to top-headlines
         apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}`;
         if (sources) {
           apiUrl += `&sources=${encodeURIComponent(sources)}`;
@@ -88,7 +80,6 @@ export async function GET(request) {
       const data = await res.json();
 
       if (data.status === 'ok' && data.articles?.length > 0) {
-        // --- Bulk upsert to prevent duplicates ---
         const bulkOps = data.articles.map((article) => ({
           updateOne: {
             filter: { url: article.url },
@@ -105,7 +96,6 @@ export async function GET(request) {
 
         await headlinesCollection.bulkWrite(bulkOps, { ordered: false });
 
-        // Re-fetch after upsert
         articles = await headlinesCollection
           .find(dbQuery)
           .sort({ publishedAt: -1 })
